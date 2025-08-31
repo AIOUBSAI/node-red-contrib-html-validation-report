@@ -1,0 +1,43 @@
+{
+  "name": "node-red-contrib-html-validation-report",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [
+    "node-red",
+    "node-red-contrib",
+    "report",
+    "rules",
+    "excel",
+    "sheets",
+    "data-report"
+  ],
+  "author": "Your Name <you@example.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/AIOUBSAI/node-red-contrib-html-validation-report#readme",
+  "bugs": {
+    "url": "https://github.com/AIOUBSAI/node-red-contrib-html-validation-report/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AIOUBSAI/node-red-contrib-html-validation-report.git"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "node-red": {
+    "nodes": {
+      "html-validation-report": "html-validation-report.js"
+    }
+  },
+  "files": [
+    "html-validation-report.js",
+    "html-validation-report.html",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

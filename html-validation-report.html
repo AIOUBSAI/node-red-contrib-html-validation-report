@@ -1,0 +1,112 @@
+<!-- validation-report.html -->
+<style>
+  .vr .form-row label{display:block;margin-bottom:4px}
+  .vr .inline{display:flex;gap:8px;align-items:center}
+  .vr .inline>*{flex:1}
+  .vr .muted{opacity:.75;font-size:12px}
+  .vr input[type="text"], .vr select{width:100% !important; box-sizing:border-box}
+  .vr .compact{max-width:1100px;margin:0 auto}
+</style>
+
+<script type="text/javascript">
+(function(){
+  RED.nodes.registerType("validation-report",{
+    category:"function",
+    color:"#FFD8B1",
+    icon:"font-awesome/fa-file-text-o",
+    paletteLabel:"validation-report",
+    inputs:1, outputs:1,
+    defaults:{
+      name:{value:""},
+      inScope:{value:"msg"},
+      inPath:{value:"validation"},
+      outScope:{value:"msg"},
+      outPath:{value:"payload"},
+      fileScope:{value:"msg"},
+      filePath:{value:"filename"},
+      fixedFilename:{value:""} /* e.g. logs/data_validation_rule_engine_report.html */
+    },
+    label(){ return this.name || "validation-report"; },
+    oneditprepare: function(){
+      $("#node-input-inPath").typedInput({
+        default:"msg",
+        types:["msg","flow","global"],
+        typeField: $("#node-input-inScope")
+      });
+      $("#node-input-outPath").typedInput({
+        default:"msg",
+        types:["msg","flow","global"],
+        typeField: $("#node-input-outScope")
+      });
+      $("#node-input-filePath").typedInput({
+        default:"msg",
+        types:["msg","flow","global"],
+        typeField: $("#node-input-fileScope")
+      });
+    }
+  });
+})();
+</script>
+
+<script type="text/x-red" data-template-name="validation-report">
+  <div class="vr compact">
+    <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="validation-report">
+    </div>
+
+    <div class="form-row">
+      <label><i class="fa fa-sign-in"></i> Input (validation object or logs array)</label>
+      <div class="inline">
+        <input type="text" id="node-input-inPath" placeholder="validation">
+        <input type="hidden" id="node-input-inScope">
+      </div>
+      <div class="muted">Accepts either <code>{ logs, counts }</code> or an array of log rows.</div>
+    </div>
+
+    <div class="form-row">
+      <label><i class="fa fa-sign-out"></i> Output HTML</label>
+      <div class="inline">
+        <input type="text" id="node-input-outPath" placeholder="payload">
+        <input type="hidden" id="node-input-outScope">
+      </div>
+      <div class="muted">Where to write the generated HTML (msg/flow/global path).</div>
+    </div>
+
+    <div class="form-row">
+      <label><i class="fa fa-file-o"></i> Optional filename target</label>
+      <div class="inline">
+        <input type="text" id="node-input-filePath" placeholder="filename">
+        <input type="hidden" id="node-input-fileScope">
+      </div>
+      <div class="muted">This path is only written if <b>Fixed filename</b> below is non-empty.</div>
+    </div>
+
+    <div class="form-row">
+      <label for="node-input-fixedFilename"><i class="fa fa-pencil"></i> Fixed filename (optional)</label>
+      <input type="text" id="node-input-fixedFilename" placeholder="logs/data_validation_rule_engine_report.html">
+      <div class="muted">Leave blank to leave any existing filename untouched.</div>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="validation-report">
+  <p><b>Validation Report</b> — renders your full-featured HTML report (filters, search highlight, pagination, by-rule & by-sheet sections, export menu, light/dark) from validation logs.</p>
+  <h4>Input</h4>
+  <ul>
+    <li>Choose the source (msg / flow / global) and path that contains either:
+      <ul>
+        <li><code>{ logs, counts }</code>, or</li>
+        <li><code>logs[]</code> directly.</li>
+      </ul>
+    </li>
+    <li>Suggestions are pulled from <code>global.crossSheetValidationRules</code> (if present) to show rule tips.</li>
+  </ul>
+  <h4>Output</h4>
+  <ul>
+    <li>Choose the destination (msg / flow / global) and path where the generated HTML will be written (default: <code>msg.payload</code>).</li>
+    <li>Optionally set a fixed filename; if provided, it will be written to the chosen filename path (default: <code>msg.filename</code>).</li>
+  </ul>
+  <h4>Typical wiring</h4>
+  <p><code>inject → data-validation-engine → validation-report → file</code></p>
+</script>
