@@ -11,7 +11,7 @@
     "sheets",
     "data-report"
   ],
-  "author": "Your Name <you@example.com>",
+  "author": "sai aioub <sai.aioub@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/AIOUBSAI/node-red-contrib-html-validation-report#readme",
   "bugs": {
@@ -41,3 +41,4 @@
     "access": "public"
   }
 }
+
