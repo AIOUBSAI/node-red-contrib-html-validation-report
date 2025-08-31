@@ -173,18 +173,6 @@ The report will display the rule header as the `id` (or `ruleId`), and use `mess
    └─ screenshot.png
 ```
 
----
-
-## Changelog
-
-* **0.2.0**
-
-  * Initial release: simplified validation engine report
-  * Typed input/output for both nodes
-  * Report supports `id`/`ruleId` and `message`/`value` fallbacks
-
----
-
 ## License
 
 MIT © AIOUBSAI
