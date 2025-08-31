@@ -177,7 +177,7 @@ The report will display the rule header as the `id` (or `ruleId`), and use `mess
 
 ## Changelog
 
-* **1.0.0**
+* **0.2.0**
 
   * Initial release: simplified validation engine report
   * Typed input/output for both nodes
