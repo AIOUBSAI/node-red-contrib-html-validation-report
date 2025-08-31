@@ -70,15 +70,15 @@ Validates an object model (usually built from Excel/CSV) using a small ruleset.
     "type": "sheetsExist",
     "id": "RULE_SHEETS_EXIST",
     "description": "Verify that required sheets exist and are not empty",
-    "requiredSheets": ["SWIG", "Layout", "Tarch"],
+    "requiredSheets": ["NAME", "PRICE"],
     "level": "error"
   },
   {
     "type": "sheetHasColumns",
-    "id": "RULE_COLUMNS_TARCH",
-    "description": "Check that Tarch sheet includes GroupName and model fields",
-    "sheet": "Tarch",
-    "requiredColumns": ["Instances[].GroupName", "Instances[].Model"],
+    "id": "RULE_COLUMNS_NAME",
+    "description": "Check that sheet includes name, etc fields",
+    "sheet": "NAME",
+    "requiredColumns": ["name", "grade" etc],
     "level": "warning"
   }
 ]
@@ -119,7 +119,7 @@ Turns `msg.validation` (or any logs array) into a feature-rich HTML file.
 * Configure **data-validation-engine** to read your model (e.g., `msg.data`).
 * Configure **validation-report** input: `msg.validation`.
 * Configure **validation-report** output: `msg.payload`.
-* Set **Fixed filename** (optional): `logs/data_validation_rule_engine_report.html`.
+* Set **Fixed filename** (optional): `logs/report.html`.
 * File node writes `msg.payload` → `msg.filename`.
 
 **Screenshot**
@@ -138,7 +138,7 @@ Either:
       "id": "RULE_SHEETS_EXIST",
       "type": "sheetsExist",
       "level": "error",
-      "message": "Sheet 'IPMapping' exists and is not empty.",
+      "message": "Sheet 'PRICE' exists and is not empty.",
       "description": "Verify that required sheets exist and are not empty"
     }
   ],
@@ -151,7 +151,7 @@ Or directly:
 ```json
 [
   { "id": "RULE_SHEETS_EXIST", "type": "sheetsExist", "level": "error", "message": "..." },
-  { "id": "RULE_COLUMNS_TARCH", "type": "sheetHasColumns", "level": "warning", "message": "..." }
+  { "id": "RULE_COLUMNS_NAME", "type": "sheetHasColumns", "level": "warning", "message": "..." }
 ]
 ```
 
