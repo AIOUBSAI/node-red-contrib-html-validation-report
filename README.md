@@ -1,4 +1,4 @@
-# node-red-contrib-validation-suite
+# node-red-contrib-html-validation-report
 
 Two Node-RED nodes for validating workbook-like data and generating a rich HTML report.
 
@@ -22,11 +22,11 @@ Two Node-RED nodes for validating workbook-like data and generating a rich HTML 
 ## Install
 
 ```bash
-npm i node-red-contrib-validation-suite
+npm i node-red-contrib-html-validation-report
 # then restart Node-RED
 ````
 
-Or from Node-RED editor: **Menu → Manage palette → Install** → search for `validation-suite`.
+Or from Node-RED editor: **Menu → Manage palette → Install** → search for `node-red-contrib-html-validation-report`.
 
 ---
 
@@ -108,8 +108,6 @@ Turns `msg.validation` (or any logs array) into a feature-rich HTML file.
 
 * The report **groups** by `ruleId` **or** `id` (falls back to `rule` or `(unknown)`).
 * The “Value” column uses `value` **or** `message` if `value` is absent.
-* Suggestions are pulled from `global.crossSheetValidationRules` when present:
-
   * The report maps `rules[].id → rules[].suggestions[]`.
 
 **Typical flow**
@@ -161,18 +159,6 @@ The report will display the rule header as the `id` (or `ruleId`), and use `mess
 
 ---
 
-## Development
-
-```bash
-# link locally
-npm i
-npm run build   # (no-op by default)
-npm pack        # create tarball
-
-# in your Node-RED userDir (usually ~/.node-red)
-npm i /path/to/node-red-contrib-validation-suite-*.tgz
-```
-
 **File structure**
 
 ```
@@ -193,7 +179,7 @@ npm i /path/to/node-red-contrib-validation-suite-*.tgz
 
 * **1.0.0**
 
-  * Initial release: simplified validation engine + full-featured report
+  * Initial release: simplified validation engine report
   * Typed input/output for both nodes
   * Report supports `id`/`ruleId` and `message`/`value` fallbacks
 
