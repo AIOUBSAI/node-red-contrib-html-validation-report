@@ -185,6 +185,6 @@ The report will display the rule header as the `id` (or `ruleId`), and use `mess
 
 ---
 
-## License @AIOUBSAI
+## License
 
-[MIT](LICENSE)
+MIT © AIOUBSAI
